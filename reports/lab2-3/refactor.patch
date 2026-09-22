@@ -1,0 +1,45 @@
+--- a/server/services/ai/aiCatalogService.js
++++ b/server/services/ai/aiCatalogService.js
+@@ -87,6 +87,19 @@
+   image: Array.isArray(product.image) && product.image.length > 0 ? product.image[0] : "",
+ });
+ 
++const scoreProductByHint = (product, hintTokens) => {
++  const text = `${product.name || ""} ${product.nameUk || ""} ${asText(product.description)} ${asText(product.descriptionUk)}`.toLowerCase();
++
++  let score = 0;
++  for (const token of hintTokens) {
++    if (text.includes(token)) {
++      score += token.length > 4 ? 3 : 2;
++    }
++  }
++
++  return score;
++};
++
+ export const findBestProductByHint = (products, hint) => {
+   const hintTokens = tokenize(hint);
+   if (hintTokens.length === 0) {
+@@ -97,20 +110,12 @@
+   let bestScore = 0;
+ 
+   for (const product of products) {
+-    const text = `${product.name || ""} ${product.nameUk || ""} ${asText(product.description)} ${asText(product.descriptionUk)}`.toLowerCase();
+-
+-    let score = 0;
+-    for (const token of hintTokens) {
+-      if (text.includes(token)) {
+-        score += token.length > 4 ? 3 : 2;
+-      }
+-    }
+-
++    const score = scoreProductByHint(product, hintTokens);
+     if (score > bestScore) {
+       bestScore = score;
+       winner = product;
+     }
+   }
+ 
+-  return bestScore > 0 ? winner : null;
++  return winner;
+ };

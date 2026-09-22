@@ -1,0 +1,24 @@
+
+> test
+> node --experimental-vm-modules --test regression.test.mjs
+
+(node:16617) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ empty, whitespace and punctuation-only hints return null (1.631666ms)
+✔ an empty catalog and zero-scoring catalogs return null (0.113292ms)
+✔ weights distinguish four- and five-character tokens and combine matches (0.084083ms)
+✔ ties keep the first matching object and strictly larger scores replace it (0.085709ms)
+✔ Unicode, case conversion and punctuation retain multilingual matching (0.112542ms)
+✔ repeated query tokens contribute repeatedly to the score (0.047875ms)
+✔ matching uses substrings and ignores category-only matches (0.061208ms)
+✔ array descriptions and absent or falsy fields preserve text conversion (0.10675ms)
+✔ results preserve original object identity and inputs stay immutable (0.085834ms)
+✔ 180 deterministic generated catalogs produce identical immutable results (4.621125ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47.548458
