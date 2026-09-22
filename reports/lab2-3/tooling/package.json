@@ -1,0 +1,13 @@
+{
+  "name": "greencart-lab23-metrics",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "metrics": "node measure.mjs",
+    "test": "node --experimental-vm-modules --test regression.test.mjs"
+  },
+  "devDependencies": {
+    "acorn": "8.15.0",
+    "eslint": "9.39.2"
+  }
+}
